@@ -1,0 +1,20 @@
+{
+  "name": "fimpo",
+  "version": "1.0.0",
+  "description": "Import file with definable structure data format to database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://vjianwang@bitbucket.org/vjianwang/fimpo.git"
+  },
+  "author": "Jiang Wang",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/vjianwang/fimpo#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "sinon": "^1.17.3"
+  }
+}
