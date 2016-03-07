@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 
 describe('scaner test', function () {
-	var directory = path.join('g:','javascript', 'fimpo', 'test', 'scan');
+	var directory = path.join(__dirname, 'scan');
 
 	before(function () {
 		if (!fs.existsSync(directory)) {
