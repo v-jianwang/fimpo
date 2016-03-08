@@ -1,4 +1,2 @@
 node_modules
-test/scan
-test/wait
-test/process
+test/tmp

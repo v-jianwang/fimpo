@@ -7,7 +7,7 @@ var ProcessUnit = require('../lib/processUnit');
 
 describe('processUnit test', function () {
 
-	var directory = path.join(__dirname, 'process');
+	var directory = path.join(__dirname, 'tmp', 'process');
 
 	before(function () {
 		if (!fs.existsSync(directory)) {

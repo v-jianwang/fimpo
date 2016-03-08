@@ -6,7 +6,7 @@ var path = require('path');
 
 describe('waiter test', function () {
 
-	var directory = path.join(__dirname, 'wait');
+	var directory = path.join(__dirname, 'tmp', 'wait');
 
 	before(function () {
 		if (!fs.existsSync(directory)) {

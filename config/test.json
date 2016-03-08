@@ -1,0 +1,7 @@
+{
+	"env": "test",
+	"targetpaths": [
+		"g:\\javascript\\fimpo\\test\\tmp\\server\\test_1",
+		"g:\\javascript\\fimpo\\test\\tmp\\server\\test_2"
+	]
+}
