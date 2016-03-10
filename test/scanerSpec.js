@@ -19,20 +19,28 @@ describe('scaner test', function () {
 	});	
 
 
+	beforeEach(function () {
+		scaner.removeAllListeners();
+		scaner.stop();
+	});
 
-	it('create a scaner', function () {
+
+	it('create a scaner', function (done) {
 		expect(scaner.count()).to.equal(0);
+		scaner.on(scaner.EVENT_SCAN_FINISH, function () {
+			done();
+		});
 		scaner.scan(directory, false);
 		expect(scaner.count()).to.equal(1);
-		scaner.stop();
 	});
 
 
 	it('call function when scanning finishes', function (done) {
 		var go = false;
-		scaner.once('finished', function (dir, filenames) {
+		scaner.on('finished', function (dir, filenames) {
 			expect(dir).to.equal(directory);
 			expect(scaner.count()).to.equal(0);
+
 			done();
 		});
 
@@ -51,7 +59,7 @@ describe('scaner test', function () {
 		fs.writeFileSync(fileb, 'bbb');
 		fs.writeFileSync(filec, 'ccc');
 
-		scaner.once('finished', function (dir, filenames) {
+		scaner.on(scaner.EVENT_SCAN_FINISH, function (dir, filenames) {
 			expect(dir).to.equal(directory);
 			expect(filenames).to.be.a('Array');
 			expect(filenames.length).to.equal(expectednames.length);
@@ -62,10 +70,10 @@ describe('scaner test', function () {
 			expect(filenames[0]).to.equal(expectednames[0]);
 			expect(filenames[1]).to.equal(expectednames[1]);
 			expect(filenames[2]).to.equal(expectednames[2]);
+
 			done();
 		});
 
-		scaner.scan(directory)
-			  .includesubdirectory(false);
+		scaner.scan(directory, false);
 	});
 });

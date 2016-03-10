@@ -3,17 +3,17 @@ var expect = require('chai').expect;
 describe('config test', function () {
 	
 	it('create config base on variable', function () {
-		var config = require('../lib/config');
+		var Config = require('../lib/config');
 		
 		var envDev = 'dev';
-		var configDev = config(envDev);
+		var configDev = new Config(envDev);
 		expect(configDev.env).to.equal(envDev);
 
 		var envTest = 'test';
-		var configTest = config(envTest);
+		var configTest = new Config(envTest);
 		expect(configTest.env).to.equal(envTest);
 
-		config = config();
+		var config = new Config();
 		expect(config.env).to.equal('default');
 	});
 });

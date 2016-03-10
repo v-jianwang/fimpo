@@ -6,9 +6,8 @@ var path = require('path');
 
 describe('queue test', function () {
 
-	afterEach(function () {
+	beforeEach(function () {
 		queue.empty();
-		expect(queue.queues.length).to.equal(0);
 	});
 
 
@@ -35,7 +34,7 @@ describe('queue test', function () {
 		var file = "g:\\javascript\\abc.txt";
 		var qname = "new";
 		queue.queue(qname)
-			 .on('reached', function (q, filename) {
+			 .on(queue.EVENT_NEW_REACHED, function (q, filename) {
 				  		expect(q.name()).to.equal(qname);
 				  		expect(filename).to.equal(file);
 				  		done();

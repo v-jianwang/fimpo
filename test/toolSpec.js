@@ -23,7 +23,6 @@ describe('tool test', function () {
 		expect(value).to.be.true;
 
 		value = tool.detect('FALSE').shouldBe();
-		console.log(value);
 		expect(value).to.be.a('boolean');
 		expect(value).to.not.be.true;
 

@@ -1,7 +1,9 @@
 {
 	"env": "dev",
-	"targetpaths": [
+	"sourcePaths": [
 		"g:\\javascript\\fimpo\\test\\tmp\\server\\dev_1",
 		"g:\\javascript\\fimpo\\test\\tmp\\server\\dev_2"
-	]
+	],
+	"processSize": 2,
+	"scanInterval": 60000	
 }

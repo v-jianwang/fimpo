@@ -28,7 +28,7 @@ describe('waiter test', function () {
 		waiter.wait(directory, false);
 		expect(waiter.count()).to.equal(1);
 		
-		waiter.unwait(directory, false);
+		waiter.unwait(directory);
 		expect(waiter.count()).to.equal(0);
 	});
 
