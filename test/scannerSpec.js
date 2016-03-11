@@ -1,10 +1,10 @@
 var expect = require('chai').expect;
-var scaner = require('../lib/scaner');
+var scanner = require('../lib/scanner');
 
 var fs = require('fs');
 var path = require('path');
 
-describe('scaner test', function () {
+describe('scanner test', function () {
 	var directory = path.join(__dirname, 'tmp', 'scan');
 
 	before(function () {
@@ -20,31 +20,31 @@ describe('scaner test', function () {
 
 
 	beforeEach(function () {
-		scaner.removeAllListeners();
-		scaner.stop();
+		scanner.removeAllListeners();
+		scanner.stop();
 	});
 
 
-	it('create a scaner', function (done) {
-		expect(scaner.count()).to.equal(0);
-		scaner.on(scaner.EVENT_SCAN_FINISH, function () {
+	it('create a scanner', function (done) {
+		expect(scanner.count()).to.equal(0);
+		scanner.on(scanner.EVENT_SCAN_FINISH, function () {
 			done();
 		});
-		scaner.scan(directory, false);
-		expect(scaner.count()).to.equal(1);
+		scanner.scan(directory, false);
+		expect(scanner.count()).to.equal(1);
 	});
 
 
 	it('call function when scanning finishes', function (done) {
 		var go = false;
-		scaner.on('finished', function (dir, filenames) {
+		scanner.on('finished', function (dir, filenames) {
 			expect(dir).to.equal(directory);
-			expect(scaner.count()).to.equal(0);
+			expect(scanner.count()).to.equal(0);
 
 			done();
 		});
 
-		scaner.scan(directory);
+		scanner.scan(directory);
 	});
 
 
@@ -59,7 +59,7 @@ describe('scaner test', function () {
 		fs.writeFileSync(fileb, 'bbb');
 		fs.writeFileSync(filec, 'ccc');
 
-		scaner.on(scaner.EVENT_SCAN_FINISH, function (dir, filenames) {
+		scanner.on(scanner.EVENT_SCAN_FINISH, function (dir, filenames) {
 			expect(dir).to.equal(directory);
 			expect(filenames).to.be.a('Array');
 			expect(filenames.length).to.equal(expectednames.length);
@@ -74,6 +74,6 @@ describe('scaner test', function () {
 			done();
 		});
 
-		scaner.scan(directory, false);
+		scanner.scan(directory, false);
 	});
 });

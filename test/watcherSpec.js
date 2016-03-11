@@ -1,12 +1,12 @@
 var expect = require('chai').expect;
-var waiter = require('../lib/waiter');
+var watcher = require('../lib/watcher');
 
 var fs = require('fs');
 var path = require('path');
 
-describe('waiter test', function () {
+describe('watcher test', function () {
 
-	var directory = path.join(__dirname, 'tmp', 'wait');
+	var directory = path.join(__dirname, 'tmp', 'watch');
 
 	before(function () {
 		if (!fs.existsSync(directory)) {
@@ -20,16 +20,16 @@ describe('waiter test', function () {
 	});
 
 	afterEach(function () {
-		waiter.unwait();
+		watcher.unwatch();
 	});
 
 
-	it('create and remove a waiter', function () {
-		waiter.wait(directory, false);
-		expect(waiter.count()).to.equal(1);
+	it('create and remove a watcher', function () {
+		watcher.watch(directory, false);
+		expect(watcher.count()).to.equal(1);
 		
-		waiter.unwait(directory);
-		expect(waiter.count()).to.equal(0);
+		watcher.unwatch(directory);
+		expect(watcher.count()).to.equal(0);
 	});
 
 
@@ -40,12 +40,12 @@ describe('waiter test', function () {
 			fs.unlinkSync(pathname);
 		}
 
-		waiter.on('reached', function (filename) {
+		watcher.on('reached', function (filename) {
 			expect(filename).to.equal(path.basename(pathname));
 			done();
 		});
 
-		waiter.wait(path.dirname(pathname), false);
+		watcher.watch(path.dirname(pathname), false);
 		fs.writeFileSync(pathname, 'Hello bar');
 	});
 });

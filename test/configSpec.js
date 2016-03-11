@@ -15,5 +15,8 @@ describe('config test', function () {
 
 		var config = new Config();
 		expect(config.env).to.equal('default');
+
+		config = new Config(null);
+		expect(config.env).to.equal('default');		
 	});
 });
