@@ -27,7 +27,13 @@ describe('processUnit test', function () {
 		testHelper.createDataFile(filepath);
 
 		var unit = new ProcessUnit();
-		unit.process(filepath, function (err, table) {
+
+		var options = {
+			"filename": filepath,
+			"rowdelimiter": '',
+			"coldelimiter": ''
+		};
+		unit.process(options, function (err, table) {
 			expect(table.length).to.equal(4);
 
 			expect(table[0][0]).to.be.a('string')

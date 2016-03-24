@@ -5,5 +5,16 @@
 		"g:\\javascript\\fimpo\\test\\tmp\\server\\test_2"
 	],
 	"processSize": 2,
-	"scanInterval": 60000	
+	"scanInterval": 60000,
+	"dbsetting" : {
+		"host": "localhost",
+		"user": "jiang",
+		"password": "pass@word1",
+		"database": "fimpo",
+		"table": "articles"
+	},
+	"txtsetting" : {
+		"rowdelimiter": "",
+		"coldelimiter": ","
+	}
 }

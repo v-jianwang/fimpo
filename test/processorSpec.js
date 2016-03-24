@@ -1,7 +1,9 @@
 var expect = require('chai').expect;
 var path = require('path');
 
-var processor = require('../lib/processor');
+var QueueSet = require('../lib/queueSet');
+var Config = require('../lib/config');
+var Processor = require('../lib/processor');
 var testHelper = require('./testHelper');
 
 
@@ -19,25 +21,33 @@ describe('processor test', function () {
 		var filepath = path.join(directory, 'data_processorTest.txt');
 		testHelper.createDataFile(filepath);
 
-		processor.accept(filepath, function (err, table) {
-			expect(table.length).to.equal(4);
+		function load (data) {
+			expect(data.length).to.equal(4);
 
-			expect(table[0][0]).to.be.a('string')
-			expect(table[0][0]).to.equal('0001');
+			expect(data[0][0]).to.be.a('string')
+			expect(data[0][0]).to.equal('0001');
 			
-			expect(table[0][2]).to.be.a('boolean');
-			expect(table[0][2]).to.be.true;
+			expect(data[0][2]).to.be.a('boolean');
+			expect(data[0][2]).to.be.true;
 			
-			expect(table[1][1]).to.equal('Kingston Lee');
+			expect(data[1][1]).to.equal('Kingston Lee');
 			
-			expect(table[2][3]).to.be.a('number');
-			expect(table[2][3]).to.equal(25);
-			expect(table[2][3]).to.be.a('number');
-			expect(table[3][3]).to.equal(0.5);
+			expect(data[2][3]).to.be.a('number');
+			expect(data[2][3]).to.equal(25);
+			expect(data[2][3]).to.be.a('number');
+			expect(data[3][3]).to.equal(0.5);
 
-			expect(table[3][4]).to.equal('Officer');
+			expect(data[3][4]).to.equal('Officer');
 
-			done();
-		});
+			done();			
+		}
+		var options = {
+			"filename": filepath,
+			"rowdelimiter": '',
+			"coldelimiter": ''
+		};
+
+		var processor = new Processor(new QueueSet(), new Config());
+		processor.accept(options, load);
 	});
 });
